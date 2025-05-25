@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: platforms-service-config
+data:
+  # The key name "CommandService" directly matches what you're trying to retrieve in your .NET code.
+  # Kubernetes internal DNS: <service-name>.<namespace>.svc.cluster.local:<service-port>
+  # Assuming your Commands Service is named 'commands-clusterip-srv' and its port is 8080 (as in your example)
+  # and it's in the same namespace as PlatformService (e.g., 'default').
+  # Adjust the port if your Commands Service is listening on a different port.
+  CommandsService: "http://10.111.110.164:8080/api/c/platforms"

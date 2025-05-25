@@ -6,13 +6,31 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: platformservice
+      app: platformsservice
   template:
     metadata:
       labels:
-        app: platformservice
+        app: platformsservice
     spec:
       containers:
-        - name: platformservice
-          image: n17ali/platformservice:latest
+        - name: platformsservice
+          image: n17ali/platformsservice:latest
           imagePullPolicy: Never
+          # inject the ConfigMap as environment variables
+          envFrom:
+            - configMapRef:
+                name: platforms-service-config # Reference the ConfigMap by its name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: platforms-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: platformsservice
+  ports:
+    - name: platformsservice
+      protocol: TCP
+      port: 8080
+      targetPort: 8080

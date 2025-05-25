@@ -23,6 +23,11 @@ public class PlatformRepo(AppDbContext context) : IPlatformRepo
         return _context.Platforms.FirstOrDefault(p => p.Id == id);
     }
 
+    public Platform GetPlatformByName(string name)
+    {
+        return _context.Platforms.FirstOrDefault(p => p.Name == name);
+    }
+
     public bool SaveChanges()
     {
         return _context.SaveChanges() >= 0;

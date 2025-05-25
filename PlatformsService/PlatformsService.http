@@ -1,0 +1,19 @@
+###
+@PlatformService_HostAddress = http://192.168.49.2:30736
+
+GET {{PlatformService_HostAddress}}/api/platforms/
+Accept: application/json
+###
+
+GET {{PlatformService_HostAddress}}/api/platforms/1
+Accept: application/json
+###
+
+POST {{PlatformService_HostAddress}}/api/platforms/
+Content-Type: application/json
+
+{
+    "name": "Docker",
+    "publisher": "Docker Inc",
+    "cost": "Free"
+}

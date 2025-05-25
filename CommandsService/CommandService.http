@@ -1,0 +1,6 @@
+@CommandsService_HostAddress = http://platforms-clusterip-srv:8080/api/c/platforms
+
+POST {{CommandsService_HostAddress}}/api/c/platforms
+Accept: application/json
+
+###
