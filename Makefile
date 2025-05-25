@@ -8,6 +8,7 @@ PLATFORMS_IMAGE = n17ali/platformsservice:latest
 COMMANDS_DEPL = K8S/commands-depl.yaml
 PLATFORMS_DEPL = K8S/platforms-depl.yaml
 PLATFORMS_CONFIG = K8S/platforms-service-config.yaml
+PLATFORMS_NP_SRV = K8S/platforms-np-srv.yaml
 
 # Target to set Minikube Docker environment
 minikube-env:
@@ -47,6 +48,7 @@ apply-platforms:
 	kubectl apply -f $(PLATFORMS_DEPL)
 	kubectl rollout restart deployment # Restart deployment to apply changes
 	kubectl apply -f $(PLATFORMS_CONFIG)
+	kubectl apply -f $(PLATFORMS_NP_SRV)
 	@echo "Platforms Service K8S manifests applied."
 
 # Default target - build and apply commands service
