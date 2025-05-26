@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using PlatformService.Data;
-using PlatformService.Endpoints;
-using PlatformService.SyncDataService.Http;
+using PlatformsService.Data;
+using PlatformsService.Endpoints;
+using PlatformsService.SyncDataService.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +24,7 @@ var app = builder.Build();
 
 PrepDb.PrepPopulation(app);
 
-PlatformEndpoints.MapEndpoints(app);
+PlatformsEndpoints.MapEndpoints(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

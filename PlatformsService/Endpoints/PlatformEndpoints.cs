@@ -1,12 +1,12 @@
 using AutoMapper;
-using PlatformService.Data;
-using PlatformService.Dtos;
-using PlatformService.Models;
-using PlatformService.SyncDataService.Http;
+using PlatformsService.Data;
+using PlatformsService.Dtos;
+using PlatformsService.Models;
+using PlatformsService.SyncDataService.Http;
 
-namespace PlatformService.Endpoints;
+namespace PlatformsService.Endpoints;
 
-public static class PlatformEndpoints
+public static class PlatformsEndpoints
 {
     const string tag = "Platform";
     public static void MapEndpoints(IEndpointRouteBuilder app)

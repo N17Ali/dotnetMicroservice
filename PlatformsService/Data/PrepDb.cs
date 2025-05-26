@@ -1,6 +1,6 @@
-using PlatformService.Models;
+using PlatformsService.Models;
 
-namespace PlatformService.Data;
+namespace PlatformsService.Data;
 
 public static class PrepDb
 {
@@ -17,9 +17,9 @@ public static class PrepDb
             Console.WriteLine("Seeding data...");
 
             context.Platforms.AddRange(
-                new Platform() { Name = "DotNet", Publisher = "Microsoft", Cost = "Free" },
-                new Platform() { Name = "SQL Server Express", Publisher = "Microsoft", Cost = "Free" },
-                new Platform() { Name = "Kubernetes", Publisher = "Cloud Native Computing Foundation", Cost = "Free" }
+                new Platform("DotNet", "Microsoft", "Free"),
+                new Platform("SQL Server Express", "Microsoft", "Free"),
+                new Platform("Kubernetes", "Cloud Native Computing Foundation", "Free")
             );
 
             context.SaveChanges();

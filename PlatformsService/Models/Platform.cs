@@ -1,19 +1,19 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PlatformService.Models;
+namespace PlatformsService.Models;
 
-public class Platform
+public record Platform(string Name, string Publisher, string Cost)
 {
     [Key]
     [Required]
-    public int Id { get; set; }
+    public int Id;
 
     [Required]
-    public string Name { get; set; }
+    public string Name = Name;
 
     [Required]
-    public string Publisher { get; set; }
+    public string Publisher = Publisher;
 
     [Required]
-    public string Cost { get; set; }
+    public string Cost = Cost;
 }
