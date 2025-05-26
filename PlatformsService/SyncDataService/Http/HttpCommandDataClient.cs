@@ -4,10 +4,11 @@ using PlatformsService.Dtos;
 
 namespace PlatformsService.SyncDataService.Http;
 
-public class HttpCommandDataClient(HttpClient httpClient, IConfiguration configuration) : ICommandDataClient
+public class HttpCommandDataClient(HttpClient httpClient, IConfiguration configuration, ILogger<ICommandDataClient> logger) : ICommandDataClient
 {
     private readonly HttpClient _httpClient = httpClient;
     private readonly IConfiguration _configuration = configuration;
+    private readonly ILogger<ICommandDataClient> _logger = logger;
 
     public async Task SendPlatformToCommand(PlatformReadDto platform)
     {
@@ -21,11 +22,11 @@ public class HttpCommandDataClient(HttpClient httpClient, IConfiguration configu
         var response = await _httpClient.PostAsync(commandServiceUrl, httpContent);
         if (response.IsSuccessStatusCode)
         {
-            Console.WriteLine("sync Post to Command Service was OK");
+            _logger.LogInformation("Sync Post to Command Service was OK");
         }
         else
         {
-            Console.WriteLine("sync Post to Command Service was NOT Ok");
+            _logger.LogError("Sync Post to Command Service was NOT Ok");
         }
     }
 }

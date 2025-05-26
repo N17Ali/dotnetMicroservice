@@ -41,7 +41,7 @@ public static class PlatformsEndpoints
         .WithName("GetPlatformByName")
         .WithTags(tag);
 
-        app.MapPost("/api/platforms", async (PlatformCreateDto platformDto, IPlatformRepo repository, IMapper mapper, ICommandDataClient commandDataClient, IValidator<PlatformCreateDto> validator) =>
+        app.MapPost("/api/platforms", async (PlatformCreateDto platformDto, IPlatformRepo repository, IMapper mapper, ICommandDataClient commandDataClient, IValidator<PlatformCreateDto> validator, ILogger<Program> logger) =>
         {
             var validationResult = await validator.ValidateAsync(platformDto);
 
@@ -61,9 +61,12 @@ public static class PlatformsEndpoints
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Could not send synchronously to Command Service. Continuing without sending: {e.Message}");
+                logger.LogError("Could not send synchronously to Command Service. Continuing without sending: {message}", e.Message);
             }
-            return Results.CreatedAtRoute("GetPlatformById", new { id = platformReadDto.Id }, platformReadDto);
+            return Results.CreatedAtRoute("GetPlatformById", new
+            {
+                id = platformReadDto.Id
+            }, platformReadDto);
         })
         .WithName("CreatePlatform")
         .WithTags(tag);

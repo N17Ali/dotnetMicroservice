@@ -25,10 +25,8 @@ public class ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandling
         }
     }
 
-    private async Task HandleBadHttpRequestExceptionAsync(HttpContext context, BadHttpRequestException ex)
+    private static async Task HandleBadHttpRequestExceptionAsync(HttpContext context, BadHttpRequestException ex)
     {
-        _logger.LogWarning(ex, "Bad HTTP Request (model binding/JSON parsing failure): {Message}", ex.Message);
-
         var problemDetails = new ProblemDetails
         {
             Status = StatusCodes.Status400BadRequest,

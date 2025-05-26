@@ -7,14 +7,17 @@ public static class PrepDb
     public static void PrepPopulation(IApplicationBuilder app)
     {
         using var serviceScope = app.ApplicationServices.CreateScope();
-        SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>());
+        var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var logger = serviceScope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+        SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>(), logger);
     }
 
-    private static void SeedData(AppDbContext context)
+    private static void SeedData(AppDbContext context, ILogger<Program> logger)
     {
         if (!context.Platforms.Any())
         {
-            Console.WriteLine("Seeding data...");
+            logger.LogInformation("Seeding data...");
 
             context.Platforms.AddRange(
                 new Platform() { Name = "DotNet", Publisher = "Microsoft", Cost = "Free" },
@@ -26,7 +29,7 @@ public static class PrepDb
         }
         else
         {
-            Console.WriteLine("We already have data.");
+            logger.LogInformation("Data already exists. No seeding required.");
         }
     }
 }
