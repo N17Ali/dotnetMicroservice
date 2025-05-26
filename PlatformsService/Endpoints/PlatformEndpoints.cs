@@ -1,6 +1,8 @@
 using AutoMapper;
+using FluentValidation;
 using PlatformsService.Data;
 using PlatformsService.Dtos;
+using PlatformsService.Dtos.Validation;
 using PlatformsService.Models;
 using PlatformsService.SyncDataService.Http;
 
@@ -39,8 +41,15 @@ public static class PlatformsEndpoints
         .WithName("GetPlatformByName")
         .WithTags(tag);
 
-        app.MapPost("/api/platforms", async (PlatformCreateDto platformDto, IPlatformRepo repository, IMapper mapper, ICommandDataClient commandDataClient) =>
+        app.MapPost("/api/platforms", async (PlatformCreateDto platformDto, IPlatformRepo repository, IMapper mapper, ICommandDataClient commandDataClient, IValidator<PlatformCreateDto> validator) =>
         {
+            var validationResult = await validator.ValidateAsync(platformDto);
+
+            if (!validationResult.IsValid)
+            {
+                return Results.ValidationProblem(validationResult.ToDictionary());
+            }
+
             var platform = mapper.Map<Platform>(platformDto);
             repository.CreatePlatform(platform);
             repository.SaveChanges();

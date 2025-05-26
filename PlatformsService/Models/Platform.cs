@@ -2,18 +2,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PlatformsService.Models;
 
-public record Platform(string Name, string Publisher, string Cost)
+public record Platform
 {
     [Key]
     [Required]
-    public int Id;
+    public int Id { get; init; }
 
     [Required]
-    public string Name = Name;
+    public string Name { get; init; }
 
     [Required]
-    public string Publisher = Publisher;
+    public string Publisher { get; init; }
 
     [Required]
-    public string Cost = Cost;
+    public string Cost { get; init; }
 }
