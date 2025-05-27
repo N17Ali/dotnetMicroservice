@@ -9,6 +9,10 @@ GET {{PlatformService_HostAddress}}/api/platforms/1
 Accept: application/json
 ###
 
+GET {{PlatformService_HostAddress}}/api/platforms/byname/Docker
+Accept: application/json
+###
+
 POST {{PlatformService_HostAddress}}/api/platforms/
 Content-Type: application/json
 

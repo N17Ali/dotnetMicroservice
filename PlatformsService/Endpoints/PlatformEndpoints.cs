@@ -24,9 +24,7 @@ public static class PlatformsEndpoints
         app.MapGet("/api/platforms/{id}", (int id, IPlatformRepo repository, IMapper mapper) =>
         {
             var platform = repository.GetPlatformById(id);
-            return platform is not null
-                ? Results.Ok(mapper.Map<PlatformReadDto>(platform))
-                : Results.NotFound();
+            return Results.Ok(mapper.Map<PlatformReadDto>(platform));
         })
         .WithName("GetPlatformById")
         .WithTags(tag);
@@ -34,9 +32,7 @@ public static class PlatformsEndpoints
         app.MapGet("/api/platforms/byname/{name}", (string name, IPlatformRepo repository, IMapper mapper) =>
         {
             var platform = repository.GetPlatformByName(name);
-            return platform is not null
-                ? Results.Ok(mapper.Map<PlatformReadDto>(platform))
-                : Results.NotFound();
+            return Results.Ok(mapper.Map<PlatformReadDto>(platform));
         })
         .WithName("GetPlatformByName")
         .WithTags(tag);
@@ -63,10 +59,8 @@ public static class PlatformsEndpoints
             {
                 logger.LogError("Could not send synchronously to Command Service. Continuing without sending: {message}", e.Message);
             }
-            return Results.CreatedAtRoute("GetPlatformById", new
-            {
-                id = platformReadDto.Id
-            }, platformReadDto);
+
+            return Results.CreatedAtRoute("GetPlatformById", new { id = platformReadDto.Id }, platformReadDto);
         })
         .WithName("CreatePlatform")
         .WithTags(tag);
