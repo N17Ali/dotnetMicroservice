@@ -1,5 +1,5 @@
 ###
-@PlatformService_HostAddress = http://192.168.49.2:30736
+@PlatformService_HostAddress = http://acme.com
 
 GET {{PlatformService_HostAddress}}/api/platforms/
 Accept: application/json

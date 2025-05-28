@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: platforms-service-config
 data:
-  CommandsService: "http://commands-clusterip-srv:8080/api/c/platforms"
+  CommandsService: "http://acme.com/api/c/platforms"

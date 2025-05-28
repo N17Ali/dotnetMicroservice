@@ -116,7 +116,6 @@ public class ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandling
         {
             Status = StatusCodes.Status500InternalServerError,
             Title = "An unexpected server error occurred.",
-            Detail = "An unrecoverable error occurred. Please try again later.",
             Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1"
         };
 
