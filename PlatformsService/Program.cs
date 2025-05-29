@@ -16,7 +16,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
-builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+builder.Services.AddHttpClient<ICommandsDataClient, HttpCommandsDataClient>();
 builder.Services.AddValidatorsFromAssemblyContaining<PlatformCreateDtoValidator>();
 
 var app = builder.Build();

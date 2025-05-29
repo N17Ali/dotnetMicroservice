@@ -1,4 +1,4 @@
-using CommandService.Endpoints;
+using CommandsService.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 

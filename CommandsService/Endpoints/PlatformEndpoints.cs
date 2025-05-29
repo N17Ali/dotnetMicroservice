@@ -1,4 +1,4 @@
-namespace CommandService.Endpoints;
+namespace CommandsService.Endpoints;
 
 public static class PlatformEndpoints
 {

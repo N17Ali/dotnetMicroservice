@@ -4,13 +4,13 @@ using PlatformsService.Dtos;
 
 namespace PlatformsService.SyncDataService.Http;
 
-public class HttpCommandDataClient(HttpClient httpClient, IConfiguration configuration, ILogger<ICommandDataClient> logger) : ICommandDataClient
+public class HttpCommandsDataClient(HttpClient httpClient, IConfiguration configuration, ILogger<ICommandsDataClient> logger) : ICommandsDataClient
 {
     private readonly HttpClient _httpClient = httpClient;
     private readonly IConfiguration _configuration = configuration;
-    private readonly ILogger<ICommandDataClient> _logger = logger;
+    private readonly ILogger<ICommandsDataClient> _logger = logger;
 
-    public async Task SendPlatformToCommand(PlatformReadDto platform)
+    public async Task SendPlatformToCommands(PlatformReadDto platform)
     {
         var commandServiceUrl = _configuration["CommandsService"];
 

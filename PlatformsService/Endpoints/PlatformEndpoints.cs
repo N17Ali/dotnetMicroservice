@@ -37,7 +37,7 @@ public static class PlatformsEndpoints
         .WithName("GetPlatformByName")
         .WithTags(tag);
 
-        app.MapPost("/api/platforms", async (PlatformCreateDto platformDto, IPlatformRepo repository, IMapper mapper, ICommandDataClient commandDataClient, IValidator<PlatformCreateDto> validator, ILogger<Program> logger) =>
+        app.MapPost("/api/platforms", async (PlatformCreateDto platformDto, IPlatformRepo repository, IMapper mapper, ICommandsDataClient commandDataClient, IValidator<PlatformCreateDto> validator, ILogger<Program> logger) =>
         {
             var validationResult = await validator.ValidateAsync(platformDto);
 
@@ -53,7 +53,7 @@ public static class PlatformsEndpoints
             var platformReadDto = mapper.Map<PlatformReadDto>(platform);
             try
             {
-                await commandDataClient.SendPlatformToCommand(platformReadDto);
+                await commandDataClient.SendPlatformToCommands(platformReadDto);
             }
             catch (Exception e)
             {
